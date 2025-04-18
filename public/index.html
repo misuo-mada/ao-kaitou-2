@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>推理パート</title>
+  <style>
+    body {
+      background: #111 url('dark_bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #eee;
+      font-family: "Shippori Mincho", serif;
+      margin: 0;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #00ffff;
+      margin-bottom: 30px;
+    }
+
+    .question-box {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background: #222;
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      background: #00bfff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0099cc;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>これまでの推理をまとめよう</h1>
+
+  <div class="question-box">
+    <p>① リュウは、なぜ、ユウコを殺したのですか？</p>
+    <select id="q1">
+      <option value="">-- 選択してください --</option>
+      <option value="ユウコがワタルに告白したから">ユウコがワタルに告白したから</option>
+      <option value="ユウコからいじめられていたから">ユウコからいじめられていたから</option>
+      <option value="ユウコにフラれたから">ユウコにフラれたから</option>
+    </select>
+  </div>
+
+  <div class="question-box">
+    <p>② リュウがユウコを殺害するきっかけとなったモノは何ですか？</p>
+    <select id="q2">
+      <option value="">-- 選択してください --</option>
+      <option value="ユウコのスマホ">ユウコのスマホ</option>
+      <option value="学校にばらまかれたチラシ">学校にばらまかれたチラシ</option>
+      <option value="カバン">カバン</option>
+    </select>
+  </div>
+
+  <div class="question-box">
+    <p>② 今回、そのきっかけとなったモノを用意したのは誰ですか？</p>
+    <select id="q3">
+      <option value="">-- 選択してください --</option>
+      <option value="ワタル">ワタル</option>
+      <option value="リュウ">リュウ</option>
+      <option value="マイ">マイ</option>
+    </select>
+  </div>
+
+  <button onclick="checkAnswers()">推理する</button>
+
+  <div id="result"></div>
+
+  <script>
+    function checkAnswers() {
+      const q1 = document.getElementById("q1").value;
+      const q2 = document.getElementById("q2").value;
+      const q3 = document.getElementById("q3").value;
+
+      const result = document.getElementById("result");
+
+      const isCorrect = q1 === "ユウコがワタルに告白したから" && q2 === "学校にばらまかれたチラシ" && q3 === "マイ";
+
+      if (!q1 || !q2 || !q3) {
+        result.innerHTML = "すべての選択肢を選んでください。";
+        result.style.color = "#ffcc00";
+      } else if (isCorrect) {
+        result.innerHTML = "🎉 そうだ。学校にばらまかれたチラシを見てリュウはユウコを逆恨みして殺したんだ。<br>そして、そのチラシを作れるのは、告白のことを知っていたのは、告白の時に後ろで見守っていたユウコの友達のマイしかいない・・・<br>※チャプターに戻ってシナリオを進めよう。";
+        result.style.color = "#00ff88";
+      } else {
+        result.innerHTML = "❌ 推理が外れたようだ…もう一度考えてみて。";
+        result.style.color = "#ff6666";
+      }
+    }
+  </script>
+
+</body>
+</html>
